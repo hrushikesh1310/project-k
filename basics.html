@@ -1,0 +1,177 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>AI Basics — AI Playground</title>
+    <meta
+      name="description"
+      content="Understand AI basics in plain language: AI vs ML vs Deep Learning, what training means, and common myths."
+    />
+    <link rel="stylesheet" href="assets/styles.css" />
+    <script defer src="assets/site.js"></script>
+  </head>
+  <body>
+    <a class="skip-link" href="#content">Skip to content</a>
+    <header>
+      <div class="container nav">
+        <a class="brand" href="index.html">
+          <span class="brand-badge" aria-hidden="true">AI</span>
+          <span>AI Playground</span>
+        </a>
+        <nav class="nav-links" aria-label="Primary">
+          <a href="index.html">Home</a>
+          <a href="basics.html">Basics</a>
+          <a href="capability.html">Capability</a>
+          <a href="functionality.html">Functionality</a>
+          <a href="learning.html">Learning</a>
+          <a href="ethics.html">Use & Ethics</a>
+          <a href="glossary.html">Glossary</a>
+        </nav>
+      </div>
+    </header>
+
+    <main id="content" class="container">
+      <section class="hero">
+        <div class="section-title">
+          <h1>AI Basics</h1>
+          <small>Plain language • quick examples • no gatekeeping</small>
+        </div>
+        <p>
+          Think of AI as a system that <strong>learns patterns</strong> from data and uses them to
+          <strong>predict</strong> or <strong>decide</strong>. It’s powerful—also imperfect.
+        </p>
+        <div class="pill-row">
+          <span class="pill">AI is a toolbox</span>
+          <span class="pill">ML is one tool inside</span>
+          <span class="pill">Deep Learning is a type of ML</span>
+        </div>
+      </section>
+
+      <section class="grid">
+        <article class="card span-6">
+          <h2>AI vs ML vs Deep Learning</h2>
+          <p>
+            The terms get mixed up. Here’s a clean, beginner-friendly mental model:
+          </p>
+          <div class="accordion">
+            <details id="ai">
+              <summary>AI (Artificial Intelligence)</summary>
+              <p>
+                The broad goal: make computers do “smart” tasks (understand text, recognize faces,
+                plan routes, play games, write code, etc.).
+              </p>
+            </details>
+            <details id="ml">
+              <summary>ML (Machine Learning)</summary>
+              <p>
+                A common way to build AI: instead of hard-coding every rule, you let the computer
+                <strong>learn from examples</strong>.
+              </p>
+            </details>
+            <details id="dl">
+              <summary>Deep Learning</summary>
+              <p>
+                A type of ML that uses many-layered neural networks. Great for images, speech, and
+                text—often needs lots of data and compute.
+              </p>
+            </details>
+          </div>
+          <div class="callout">
+            <strong>Shortcut:</strong> AI is the goal, ML is one approach, deep learning is one style
+            of ML.
+          </div>
+        </article>
+
+        <article class="card span-6">
+          <h2>What does “training” mean?</h2>
+          <p>
+            Training is when we adjust a model so it performs better on a task.
+          </p>
+          <div class="accordion">
+            <details id="data">
+              <summary>Step 1: Collect data</summary>
+              <p>
+                Examples: photos with labels, past messages marked spam/not spam, game outcomes,
+                etc.
+              </p>
+            </details>
+            <details id="model">
+              <summary>Step 2: Choose a model</summary>
+              <p>
+                A model is a pattern-finding machine (like a formula with adjustable knobs).
+              </p>
+            </details>
+            <details id="feedback">
+              <summary>Step 3: Give feedback</summary>
+              <p>
+                We compare the model’s output to the correct answer (or a reward signal) and adjust
+                it.
+              </p>
+            </details>
+          </div>
+          <div class="callout">
+            <strong>Important:</strong> trained models can still make mistakes, especially on new or
+            unusual situations.
+          </div>
+        </article>
+      </section>
+
+      <section class="card">
+        <h2>Everyday AI examples (that don’t feel like sci‑fi)</h2>
+        <div class="two-col">
+          <div>
+            <h3>Common</h3>
+            <ul>
+              <li>Recommendations (videos, songs, products)</li>
+              <li>Spam detection</li>
+              <li>Autocorrect and smart replies</li>
+              <li>Face unlock / photo tagging</li>
+            </ul>
+          </div>
+          <div>
+            <h3>Still improving</h3>
+            <ul>
+              <li>Self-driving features</li>
+              <li>Medical image assistance</li>
+              <li>Chatbots and assistants</li>
+              <li>Content moderation</li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <section class="card">
+        <h2>Myths vs Reality</h2>
+        <div class="two-col">
+          <div class="callout">
+            <strong>Myth:</strong> “AI understands like a human.”
+            <div class="tiny">
+              <strong>Reality:</strong> Most systems recognize patterns extremely well, but don’t
+              “understand” in a human way.
+            </div>
+          </div>
+          <div class="callout">
+            <strong>Myth:</strong> “If it said it confidently, it must be true.”
+            <div class="tiny">
+              <strong>Reality:</strong> Some AI systems can generate believable but incorrect answers.
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <footer class="footer">
+        <div class="two-col">
+          <div>
+            <strong>Next:</strong> <a href="capability.html">Types by Capability →</a>
+            <div class="tiny">Or jump back: <a href="index.html">Home</a></div>
+          </div>
+          <div class="tiny">
+            Tip: you can link directly to accordion sections like
+            <span class="kbd">basics.html#ml</span>.
+          </div>
+        </div>
+      </footer>
+    </main>
+  </body>
+</html>

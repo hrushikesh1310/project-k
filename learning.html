@@ -1,0 +1,116 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Types of AI by Learning Style — AI Playground</title>
+    <meta
+      name="description"
+      content="Understand supervised, unsupervised, and reinforcement learning with simple examples."
+    />
+    <link rel="stylesheet" href="assets/styles.css" />
+    <script defer src="assets/site.js"></script>
+  </head>
+  <body>
+    <a class="skip-link" href="#content">Skip to content</a>
+    <header>
+      <div class="container nav">
+        <a class="brand" href="index.html">
+          <span class="brand-badge" aria-hidden="true">AI</span>
+          <span>AI Playground</span>
+        </a>
+        <nav class="nav-links" aria-label="Primary">
+          <a href="index.html">Home</a>
+          <a href="basics.html">Basics</a>
+          <a href="capability.html">Capability</a>
+          <a href="functionality.html">Functionality</a>
+          <a href="learning.html">Learning</a>
+          <a href="ethics.html">Use & Ethics</a>
+          <a href="glossary.html">Glossary</a>
+        </nav>
+      </div>
+    </header>
+
+    <main id="content" class="container">
+      <section class="hero">
+        <div class="section-title">
+          <h1>Types of AI by Learning Style</h1>
+          <small>Learning style = how it learns from information</small>
+        </div>
+        <p>
+          This lens answers: <strong>“What kind of feedback does the model get while learning?”</strong>
+        </p>
+      </section>
+
+      <section class="grid">
+        <article class="card span-4">
+          <h2>Supervised learning</h2>
+          <p>
+            Learns from examples with the correct answers.
+          </p>
+          <div class="callout">
+            <strong>Example:</strong> photos labeled “cat” / “not cat”, email labeled “spam” / “not
+            spam”.
+          </div>
+          <div class="meta">
+            <span class="tag good"><span class="dot"></span>Clear targets</span>
+            <span class="tag"><span class="dot"></span>Common in practice</span>
+          </div>
+        </article>
+        <article class="card span-4">
+          <h2>Unsupervised learning</h2>
+          <p>
+            Learns structure without labeled answers.
+          </p>
+          <div class="callout">
+            <strong>Example:</strong>
+            grouping songs by similarity, finding “clusters” of customers, spotting unusual behavior.
+          </div>
+          <div class="meta">
+            <span class="tag"><span class="dot"></span>Discover patterns</span>
+            <span class="tag"><span class="dot"></span>No labels needed</span>
+          </div>
+        </article>
+        <article class="card span-4">
+          <h2>Reinforcement learning (RL)</h2>
+          <p>
+            Learns by trial-and-error: actions → rewards/penalties.
+          </p>
+          <div class="callout">
+            <strong>Example:</strong>
+            game-playing agents, robot control, some recommendation/decision systems.
+          </div>
+          <div class="meta">
+            <span class="tag warn"><span class="dot"></span>Can be tricky</span>
+            <span class="tag"><span class="dot"></span>Needs good rewards</span>
+          </div>
+        </article>
+      </section>
+
+      <section class="card">
+        <h2>How to talk about a real AI system</h2>
+        <p class="tiny">Try building a full description using all three lenses:</p>
+        <ul>
+          <li><strong>Capability:</strong> narrow vs general?</li>
+          <li><strong>Functionality:</strong> reactive vs limited memory?</li>
+          <li><strong>Learning style:</strong> supervised/unsupervised/RL?</li>
+        </ul>
+        <div class="callout">
+          <strong>Example description:</strong>
+          “A narrow AI system trained with supervised learning to detect spam. It behaves like a
+          reactive machine at prediction time (it looks at the email and outputs a label).”
+        </div>
+      </section>
+
+      <footer class="footer">
+        <div class="two-col">
+          <div>
+            <strong>Next:</strong> <a href="ethics.html">Use & Ethics →</a>
+            <div class="tiny">Previous: <a href="functionality.html">Functionality</a></div>
+          </div>
+          <div class="tiny">Remember: learning style is about training, not “personality”.</div>
+        </div>
+      </footer>
+    </main>
+  </body>
+</html>

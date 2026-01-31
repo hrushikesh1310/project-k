@@ -1,0 +1,621 @@
+:root {
+  /* Dark theme baseline */
+  --bg: #0b0f18;
+  --surface: rgba(255, 255, 255, 0.06);
+  --surface-2: rgba(255, 255, 255, 0.085);
+  --text: rgba(255, 255, 255, 0.92);
+  --muted: rgba(255, 255, 255, 0.72);
+  --brand: #6c4cff;
+  --brand-2: #00b8a9;
+  --accent: #ff7a59;
+  --border: rgba(255, 255, 255, 0.10);
+  --shadow: 0 14px 38px rgba(0, 0, 0, 0.55);
+
+  /* Cursor spotlight (set by JS) */
+  --mx: 50vw;
+  --my: 30vh;
+  --spot-opacity: 0;
+  --spot-size: 260px;
+
+  --radius: 18px;
+  --radius-sm: 12px;
+  /* Page width and text measure
+     - --max controls how wide the overall layout can get
+     - --measure keeps paragraphs readable (prevents ultra-long lines) */
+  --max: 1240px;
+  --measure: 72ch;
+
+  /* Per-page random background image (set by JS). */
+  --page-bg-image: none;
+
+  /* Overall background readability overlay */
+  --bg-overlay-1: rgba(11, 15, 24, 0.70);
+  --bg-overlay-2: rgba(11, 15, 24, 0.88);
+}
+
+/* Allow smooth animation of the spotlight size via CSS transitions.
+   (Browsers that don't support @property will still work; it just won't animate.) */
+@property --spot-size {
+  syntax: "<length>";
+  inherits: true;
+  initial-value: 260px;
+}
+
+/* Rainbow text utility */
+.rainbow-text {
+  background-image: linear-gradient(
+    90deg,
+    #ff004c,
+    #ff7a00,
+    #ffd400,
+    #2dff5b,
+    #00c2ff,
+    #7a5cff,
+    #ff4fd8,
+    #ff004c
+  );
+  background-size: 300% 100%;
+  color: transparent;
+  -webkit-text-fill-color: transparent;
+  -webkit-background-clip: text;
+  background-clip: text;
+  animation: rainbow-shift 8s linear infinite;
+}
+
+@keyframes rainbow-shift {
+  0% {
+    background-position: 0% 50%;
+  }
+  100% {
+    background-position: 300% 50%;
+  }
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica,
+    Arial, "Apple Color Emoji", "Segoe UI Emoji";
+  background:
+    linear-gradient(180deg, var(--bg-overlay-1), var(--bg-overlay-2)),
+    var(--page-bg-image),
+    radial-gradient(1200px 700px at 20% 10%, rgba(108, 76, 255, 0.18) 0%, transparent 55%),
+    radial-gradient(1000px 650px at 80% 0%, rgba(0, 184, 169, 0.14) 0%, transparent 60%),
+    radial-gradient(900px 600px at 75% 95%, rgba(255, 122, 89, 0.10) 0%, transparent 55%),
+    var(--bg);
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  color: var(--text);
+  /* Slightly roomier for readability on dark backgrounds */
+  line-height: 1.65;
+  font-size: clamp(16px, 0.25vw + 15px, 18px);
+}
+
+/* Headings: a small, consistent scale (improves scanability) */
+h1,
+h2,
+h3 {
+  letter-spacing: -0.012em;
+}
+
+/* Make headings rainbow by default (keeps paragraphs readable). */
+h1,
+h2,
+h3 {
+  background-image: linear-gradient(
+    90deg,
+    #ff004c,
+    #ff7a00,
+    #ffd400,
+    #2dff5b,
+    #00c2ff,
+    #7a5cff,
+    #ff4fd8,
+    #ff004c
+  );
+  background-size: 300% 100%;
+  color: transparent;
+  -webkit-text-fill-color: transparent;
+  -webkit-background-clip: text;
+  background-clip: text;
+  animation: rainbow-shift 10s linear infinite;
+}
+
+h2 {
+  font-size: clamp(20px, 0.9vw + 16px, 28px);
+}
+
+h3 {
+  font-size: clamp(18px, 0.55vw + 15px, 22px);
+}
+
+/* Cursor spotlight overlay (dark → lighter where the cursor is) */
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+  opacity: var(--spot-opacity);
+  transition: opacity 180ms ease-out, --spot-size 140ms ease-out;
+  background: radial-gradient(
+    circle var(--spot-size) at var(--mx) var(--my),
+    rgba(255, 255, 255, 0.17) 0%,
+    rgba(255, 255, 255, 0.10) 18%,
+    rgba(255, 255, 255, 0.0) 60%
+  );
+  mix-blend-mode: screen;
+}
+
+/* Ensure content stays above the spotlight layer */
+header,
+main {
+  position: relative;
+  z-index: 1;
+}
+
+/* A single, simple content surface (less “blocky” than cards) */
+main.container {
+  border-radius: var(--radius);
+  background: rgba(11, 15, 24, 0.55);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  box-shadow: 0 24px 60px rgba(0, 0, 0, 0.45);
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+/* Better default styles for dark theme */
+::selection {
+  background: rgba(108, 76, 255, 0.35);
+  color: rgba(255, 255, 255, 0.98);
+}
+
+ul {
+  padding-left: 1.1rem;
+}
+
+li {
+  margin: 0.25rem 0;
+}
+
+/* Make some native elements match the theme */
+details {
+  color: var(--text);
+}
+
+summary::marker {
+  color: rgba(255, 255, 255, 0.65);
+}
+
+.skip-link {
+  position: absolute;
+  left: -999px;
+  top: -999px;
+  background: rgba(0, 0, 0, 0.9);
+  color: rgba(255, 255, 255, 0.95);
+  padding: 10px 12px;
+  border-radius: 8px;
+  z-index: 10000;
+}
+
+.skip-link:focus {
+  left: 12px;
+  top: 12px;
+}
+
+header {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  backdrop-filter: blur(10px);
+  background: rgba(11, 15, 24, 0.72);
+  border-bottom: 1px solid var(--border);
+}
+
+.container {
+  width: 100%;
+  max-width: var(--max);
+  margin: 0 auto;
+  /* Responsive gutters: use available space without hugging edges */
+  padding-inline: clamp(16px, 2.4vw, 40px);
+}
+
+header .container {
+  /* Keep the sticky header compact even on wide screens */
+  padding-block: 14px;
+}
+
+.nav {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 14px;
+  flex-wrap: wrap;
+}
+
+.brand {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  font-weight: 900;
+  /* Increased per request: make the "AI Playground" header text 2× larger. */
+  font-size: 2.24rem;
+}
+
+.brand-badge {
+  /* Increased per request: make the "AI" badge 2× larger. */
+  width: 88px;
+  height: 88px;
+  /* Keep proportions similar when doubling the badge size. */
+  border-radius: 28px;
+  background: linear-gradient(135deg, var(--brand), var(--brand-2));
+  box-shadow: 0 12px 20px rgba(108, 76, 255, 0.25);
+  display: grid;
+  place-items: center;
+  color: #fff;
+  font-weight: 900;
+  /* Scale badge text to match the badge size increase. */
+  font-size: 2.1rem;
+}
+
+.nav-links {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+  align-items: center;
+}
+
+.nav-links a {
+  padding: 10px 12px;
+  border-radius: 999px;
+  border: 1px solid transparent;
+  color: var(--text);
+  font-weight: 650;
+}
+
+.nav-links a:hover {
+  border-color: var(--border);
+  background: rgba(255, 255, 255, 0.06);
+  text-decoration: none;
+}
+
+.nav-links a.active {
+  background: rgba(108, 76, 255, 0.20);
+  border-color: rgba(108, 76, 255, 0.35);
+}
+
+main {
+  /* Only vertical spacing here, so we don't override .container horizontal gutters */
+  padding-block: 22px 46px;
+}
+
+main > section + section {
+  margin-top: clamp(14px, 1.8vw, 24px);
+}
+
+.hero {
+  border-radius: var(--radius);
+  background: transparent;
+  border: 0;
+  box-shadow: none;
+  padding: clamp(10px, 1.6vw, 18px);
+}
+
+.hero h1 {
+  margin: 6px 0 8px;
+  line-height: 1.12;
+  font-size: clamp(28px, 4.2vw, 44px);
+}
+
+.hero p {
+  margin: 0;
+  color: var(--muted);
+  font-size: 1.05rem;
+  max-width: var(--measure);
+}
+
+.pill-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 14px;
+}
+
+.pill {
+  border: 1px solid var(--border);
+  background: rgba(255, 255, 255, 0.05);
+  padding: 8px 12px;
+  border-radius: 999px;
+  font-weight: 650;
+  color: var(--muted);
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+  gap: clamp(14px, 1.8vw, 20px);
+  margin-top: 18px;
+}
+
+.card {
+  grid-column: span 12;
+  border-radius: 14px;
+  background: transparent;
+  border: 1px solid rgba(255, 255, 255, 0.10);
+  box-shadow: none;
+  padding: clamp(14px, 1.6vw, 18px);
+}
+
+.card h2,
+.card h3 {
+  margin: 0 0 8px;
+  line-height: 1.2;
+}
+
+.card p {
+  margin: 0;
+  color: var(--muted);
+  max-width: var(--measure);
+}
+
+/* General content rhythm (kept subtle so cards still look tight) */
+.card p + p {
+  margin-top: 10px;
+}
+
+.card ul,
+.card ol {
+  max-width: var(--measure);
+}
+
+.card li {
+  margin: 0.35rem 0;
+}
+
+.card .meta {
+  margin-top: 10px;
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  border-radius: 999px;
+  padding: 7px 10px;
+  font-weight: 700;
+  border: 1px solid var(--border);
+  background: rgba(255, 255, 255, 0.05);
+}
+
+.tag .dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 999px;
+  background: var(--brand);
+}
+
+.tag.good .dot {
+  background: var(--brand-2);
+}
+
+.tag.warn .dot {
+  background: var(--accent);
+}
+
+.btn-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 14px;
+}
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  border-radius: 999px;
+  border: 1px solid var(--border);
+  padding: 10px 14px;
+  background: rgba(255, 255, 255, 0.06);
+  font-weight: 800;
+  cursor: pointer;
+}
+
+.btn.primary {
+  border-color: rgba(108, 76, 255, 0.25);
+  background: linear-gradient(
+    135deg,
+    rgba(108, 76, 255, 0.26),
+    rgba(0, 184, 169, 0.18)
+  );
+}
+
+.btn:hover {
+  transform: translateY(-1px);
+}
+
+.section-title {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.section-title small {
+  color: var(--muted);
+}
+
+.callout {
+  margin-top: 14px;
+  padding: 14px;
+  border-radius: var(--radius-sm);
+  border: 1px dashed rgba(255, 255, 255, 0.22);
+  background: rgba(255, 255, 255, 0.03);
+  max-width: var(--measure);
+}
+
+.callout strong {
+  display: inline-block;
+  margin-bottom: 6px;
+}
+
+.accordion {
+  margin-top: 12px;
+}
+
+.accordion details {
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  background: rgba(255, 255, 255, 0.03);
+  padding: 12px 14px;
+  margin-top: 10px;
+}
+
+.accordion summary {
+  cursor: pointer;
+  font-weight: 850;
+}
+
+.accordion summary:focus-visible {
+  outline: 3px solid rgba(108, 76, 255, 0.35);
+  outline-offset: 3px;
+  border-radius: 10px;
+}
+
+.accordion p {
+  margin: 8px 0 0;
+  color: var(--muted);
+  max-width: var(--measure);
+}
+
+.two-col {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 14px;
+}
+
+.footer {
+  margin-top: 24px;
+  padding: 18px;
+  border-radius: var(--radius);
+  border: 1px solid var(--border);
+  background: rgba(255, 255, 255, 0.03);
+  box-shadow: none;
+  color: var(--muted);
+}
+
+.footer a {
+  font-weight: 800;
+}
+
+.tiny {
+  font-size: 0.92rem;
+  color: var(--muted);
+}
+
+.kbd {
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono",
+    "Courier New", monospace;
+  border: 1px solid var(--border);
+  border-bottom-width: 2px;
+  border-radius: 8px;
+  padding: 2px 7px;
+  background: rgba(255, 255, 255, 0.06);
+}
+
+@media (min-width: 720px) {
+  .container {
+    padding-inline: clamp(18px, 2.6vw, 44px);
+  }
+
+  header .container {
+    padding-block: 16px;
+  }
+
+  .card {
+    padding: clamp(18px, 2vw, 24px);
+  }
+
+  .two-col {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .span-6 {
+    grid-column: span 6;
+  }
+
+  .span-4 {
+    grid-column: span 4;
+  }
+
+  .span-8 {
+    grid-column: span 8;
+  }
+}
+
+@media (min-width: 1400px) {
+  :root {
+    /* Make better use of large monitors while still keeping text readable */
+    --max: 1320px;
+  }
+
+  .grid {
+    margin-top: 22px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  * {
+    transition: none !important;
+    scroll-behavior: auto !important;
+  }
+
+  body::before {
+    transition: none;
+  }
+
+  h1,
+  h2,
+  h3,
+  .rainbow-text {
+    animation: none !important;
+  }
+
+  .btn:hover {
+    transform: none;
+  }
+}
+
+@media (forced-colors: active) {
+  /* Ensure text is readable for high-contrast mode users. */
+  h1,
+  h2,
+  h3,
+  .rainbow-text {
+    background: none !important;
+    color: CanvasText !important;
+    -webkit-text-fill-color: CanvasText !important;
+  }
+}
